@@ -10,18 +10,77 @@ import Navbar from './components/navbar'
 import Footer from './components/footer'
 import ContactPage from './page/contact'
 import LoginPage from './page/login'
-import Oneproducts from './page/oneproduct'
 import ProductBody from './page/products'
+import ProductDetail from './page/productdetail'
+import CartPage from './components/add_to_cart'
 
 function App() {
+  const [cart, setCart] = useState([]);
+
+  const addToCart = (product) => {
+    setCart((currentCart) => {
+      const existingItem = currentCart.find((item) => item.id === product.id);
+
+      if (existingItem) {
+        return currentCart.map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      }
+
+      return [...currentCart, { ...product, quantity: 1 }];
+    });
+  };
+
+  const updateQuantity = (productId, quantity) => {
+    if (quantity < 1) {
+      removeFromCart(productId);
+      return;
+    }
+
+    setCart((currentCart) =>
+      currentCart.map((item) =>
+        item.id === productId ? { ...item, quantity } : item
+      )
+    );
+  };
+
+  const removeFromCart = (productId) => {
+    setCart((currentCart) =>
+      currentCart.filter((item) => item.id !== productId)
+    );
+  };
+
+  const clearCart = () => {
+    setCart([]);
+  };
+
+  const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+
   return (
 
     <Routes>
       {/* //mainlayout */}
-    <Route path='/' element ={<MainLayout/>} >
-      <Route path='/' element={<Homepage/>}/>
+    <Route path='/' element ={<MainLayout cartCount={cartCount} addToCart={addToCart}/>} >
+      <Route index element={<Homepage/>}/>
+      <Route path='/home' element={<Homepage/>}/>
       <Route path='/about' element={<About/>}/>
-      <Route path='/produst' element={<ProductBody/>}/>
+      <Route path='/products' element={<ProductBody/>}/>
+      <Route path='/shop' element={<ProductBody/>}/>
+      <Route path='/products/:id' element={<ProductDetail/>}/>
+      <Route
+        path='/cart'
+        element={
+          <CartPage
+            cart={cart}
+            cartCount={cartCount}
+            updateQuantity={updateQuantity}
+            removeFromCart={removeFromCart}
+            clearCart={clearCart}
+          />
+        }
+      />
       <Route path='/contact' element={<ContactPage/>}/>
     </Route>
 
@@ -35,11 +94,11 @@ function App() {
 
 export default App;
 
-function MainLayout(){
+function MainLayout({ cartCount, addToCart }){
   return(
     <>
-    <Navbar/>
-    <Outlet/>
+    <Navbar cartCount={cartCount}/>
+    <Outlet context={{ addToCart }}/>
     <Footer/>
     </>
   )
