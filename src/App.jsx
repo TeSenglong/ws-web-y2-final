@@ -11,6 +11,7 @@ import Footer from './components/footer'
 import ContactPage from './page/contact'
 import LoginPage from './page/login'
 import Oneproducts from './page/oneproduct'
+import ProductBody from './page/products'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
     <Route path='/' element ={<MainLayout/>} >
       <Route path='/' element={<Homepage/>}/>
       <Route path='/about' element={<About/>}/>
+      <Route path='/produst' element={<ProductBody/>}/>
       <Route path='/contact' element={<ContactPage/>}/>
     </Route>
 

@@ -4,6 +4,8 @@ import { products } from "../api";
 
 
 export default function Homepage() {
+  const menProducts = products.filter(product => product.category === "Man");
+  console.log("Men category", menProducts);
 
   return (
     <div className="bg-gray-50 min-h-screen">
@@ -126,7 +128,7 @@ export default function Homepage() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
 
-            {products.slice(0,4).map((p) => (
+            {products.slice(0, 4).map((p) => (
               <div
                 key={p.id}
                 className="rounded-xl overflow-hidden shadow-lg hover:shadow-2xl duration-300 bg-white"
