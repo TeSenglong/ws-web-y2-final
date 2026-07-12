@@ -10,7 +10,7 @@ import Navbar from './components/navbar'
 import Footer from './components/footer'
 import ContactPage from './page/contact'
 import LoginPage from './page/login'
-import Oneproducts from './page/oneproduct'
+
 import ProductBody from './page/products'
 
 function App() {
