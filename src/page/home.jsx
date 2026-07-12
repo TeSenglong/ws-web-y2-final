@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { products } from "../api";
+import { Link } from "react-router-dom";
 // import Cards from "../components/card";
 
 
@@ -32,9 +33,9 @@ export default function Homepage() {
           </p>
 
           <div className="flex gap-4 mt-8">
-            <button className="bg-black text-white px-8 py-3 rounded-lg hover:bg-gray-800">
+            <Link to="/products" className="bg-black text-white px-8 py-3 rounded-lg hover:bg-gray-800">
               Shop Now
-            </button>
+            </Link>
 
             <button className="border border-black px-8 py-3 rounded-lg hover:bg-black hover:text-white">
               Explore
