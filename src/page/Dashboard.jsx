@@ -19,11 +19,12 @@ function Dashboard() {
     },
   ]);
 
-  const [newProduct, setNewProduct] = useState({
-    name: "",
-    price: "",
-    category: "",
-  });
+  const emptyForm = { name: "", price: "", category: "" };
+
+  const [newProduct, setNewProduct] = useState(emptyForm);
+
+  // Tracks which product id is currently being edited (null = add mode)
+  const [editingId, setEditingId] = useState(null);
 
   const addProduct = () => {
     if (!newProduct.name || !newProduct.price || !newProduct.category) {
@@ -34,20 +35,51 @@ function Dashboard() {
     setProducts([
       ...products,
       {
-        id: products.length + 1,
+        id: products.length ? Math.max(...products.map((p) => p.id)) + 1 : 1,
         ...newProduct,
       },
     ]);
 
+    setNewProduct(emptyForm);
+  };
+
+  const startEdit = (product) => {
+    setEditingId(product.id);
     setNewProduct({
-      name: "",
-      price: "",
-      category: "",
+      name: product.name,
+      price: product.price,
+      category: product.category,
     });
+  };
+
+  const cancelEdit = () => {
+    setEditingId(null);
+    setNewProduct(emptyForm);
+  };
+
+  const saveEdit = () => {
+    if (!newProduct.name || !newProduct.price || !newProduct.category) {
+      alert("Please fill all fields");
+      return;
+    }
+
+    setProducts(
+      products.map((product) =>
+        product.id === editingId ? { ...product, ...newProduct } : product,
+      ),
+    );
+
+    setEditingId(null);
+    setNewProduct(emptyForm);
   };
 
   const deleteProduct = (id) => {
     setProducts(products.filter((product) => product.id !== id));
+
+    // If the product being deleted was mid-edit, reset the form
+    if (editingId === id) {
+      cancelEdit();
+    }
   };
 
   const logout = () => {
@@ -62,7 +94,7 @@ function Dashboard() {
 
       <div className="w-72 bg-linear-to-b from-gray-900 to-purple-950 text-white p-6 shadow-2xl">
         <h1 className="text-3xl font-extrabold text-pink-400 mb-10">
-           Fashion Admin
+          Fashion Admin
         </h1>
 
         <ul className="space-y-5 text-lg">
@@ -125,10 +157,12 @@ function Dashboard() {
           </div>
         </div>
 
-        {/* ADD PRODUCT */}
+        {/* ADD / EDIT PRODUCT */}
 
         <div className="bg-white rounded-2xl shadow-xl p-7 mb-10">
-          <h2 className="text-2xl font-bold mb-5">➕ Add New Product</h2>
+          <h2 className="text-2xl font-bold mb-5">
+            {editingId ? "✏️ Edit Product" : "➕ Add New Product"}
+          </h2>
 
           <div className="grid grid-cols-4 gap-4">
             <input
@@ -167,12 +201,30 @@ function Dashboard() {
               }
             />
 
-            <button
-              onClick={addProduct}
-              className="bg-linear-to-r from-pink-500 to-purple-600 text-white rounded-xl hover:scale-105 transition"
-            >
-              Add Product
-            </button>
+            {editingId ? (
+              <div className="flex gap-2">
+                <button
+                  onClick={saveEdit}
+                  className="flex-1 bg-linear-to-r from-green-500 to-emerald-600 text-white rounded-xl hover:scale-105 transition"
+                >
+                  Save
+                </button>
+
+                <button
+                  onClick={cancelEdit}
+                  className="flex-1 bg-gray-200 text-gray-700 rounded-xl hover:bg-gray-300 transition"
+                >
+                  Cancel
+                </button>
+              </div>
+            ) : (
+              <button
+                onClick={addProduct}
+                className="bg-linear-to-r from-pink-500 to-purple-600 text-white rounded-xl hover:scale-105 transition"
+              >
+                Add Product
+              </button>
+            )}
           </div>
         </div>
 
@@ -200,7 +252,9 @@ function Dashboard() {
               {products.map((product) => (
                 <tr
                   key={product.id}
-                  className="border-b hover:bg-pink-50 transition text-center"
+                  className={`border-b hover:bg-pink-50 transition text-center ${
+                    editingId === product.id ? "bg-pink-50" : ""
+                  }`}
                 >
                   <td className="p-4">{product.id}</td>
 
@@ -211,12 +265,21 @@ function Dashboard() {
                   <td>{product.category}</td>
 
                   <td>
-                    <button
-                      onClick={() => deleteProduct(product.id)}
-                      className="bg-red-500 text-white px-4 py-2 rounded-xl hover:bg-red-600"
-                    >
-                      Delete
-                    </button>
+                    <div className="flex gap-2 justify-center">
+                      <button
+                        onClick={() => startEdit(product)}
+                        className="bg-purple-500 text-white px-4 py-2 rounded-xl hover:bg-purple-600"
+                      >
+                        Edit
+                      </button>
+
+                      <button
+                        onClick={() => deleteProduct(product.id)}
+                        className="bg-red-500 text-white px-4 py-2 rounded-xl hover:bg-red-600"
+                      >
+                        Delete
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))}

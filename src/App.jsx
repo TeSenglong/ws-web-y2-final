@@ -16,8 +16,9 @@ import Product from "./page/Product";
 import Orders from "./page/Orders";
 import ProductBody from "./page/products";
 import ProductDetail from "./page/productdetail";
-// import Cartpage from "./page/cart";
 import { CartPages } from "./components/add_to_cart";
+// import Cartpage from "./page/cart";
+
 
 function App() {
 
@@ -79,24 +80,36 @@ const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
         <Route index element={<Homepage />} />
         <Route path="/home" element={<Homepage />} />
         <Route path="/about" element={<About />} />
+
+        <Route path="/produsts" element={<ProductBody />} />
+
         <Route path="/products" element={<ProductBody />} />
         <Route path="/shop" element={<ProductBody />} />
         <Route path="/products/:id" element={<ProductDetail />} />
-
-        <Route path="/cart" element={<CartPages cart={cart}
-          cartCount={cartCount}
-          updateQuantity={updateQuantity}
-          removeFromCart={removeFromCart}
-          clearCart={clearCart} />} />
-
+        <Route
+          path="/cart"
+          element={
+            <CartPages
+              cart={cart}
+              cartCount={cartCount}
+              updateQuantity={updateQuantity}
+              removeFromCart={removeFromCart}
+              clearCart={clearCart}
+            />
+          }
+        />
         <Route path="/contact" element={<ContactPage />} />
       </Route>
 
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<Registerpage />} />
       <Route path="/dashboard" element={<Dashboard />} />
+
+      <Route path="/product" element={<Product />} />
+
       <Route path="/admin/products" element={<Product />} />
       <Route path="/admin/orders" element={<Orders />} />
+
       <Route path="/orders" element={<Orders />} />
     </Routes>
   );
