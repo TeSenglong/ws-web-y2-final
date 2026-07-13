@@ -1,21 +1,30 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
-import Homepage from './page/home'
-import { Outlet, Route, Router, Routes } from 'react-router-dom'
-import About from './page/about'
-import Navbar from './components/navbar'
-import Footer from './components/footer'
-import ContactPage from './page/contact'
-import LoginPage from './page/login'
-import ProductBody from './page/products'
-import ProductDetail from './page/productdetail'
-import CartPage from './components/add_to_cart'
+import { useEffect, useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "./assets/vite.svg";
+import heroImg from "./assets/hero.png";
+import "./App.css";
+import Homepage from "./page/home";
+import { Outlet, Route, Router, Routes, useLocation } from "react-router-dom";
+import About from "./page/about";
+import Navbar from "./components/navbar";
+import Footer from "./components/footer";
+import ContactPage from "./page/contact";
+import LoginPage from "./page/login";
+import Registerpage from "./page/Register";
+import Dashboard from "./page/Dashboard";
+import Product from "./page/Product";
+import Orders from "./page/Orders";
+import ProductBody from "./page/products";
+import ProductDetail from "./page/productdetail";
+import CartPage from "./components/add_to_cart";
 
 function App() {
+  const { pathname } = useLocation();
   const [cart, setCart] = useState([]);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0 });
+  }, [pathname]);
 
   const addToCart = (product) => {
     setCart((currentCart) => {
@@ -59,47 +68,50 @@ function App() {
   const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
 
   return (
-
     <Routes>
-      {/* //mainlayout */}
-    <Route path='/' element ={<MainLayout cartCount={cartCount} addToCart={addToCart}/>} >
-      <Route index element={<Homepage/>}/>
-      <Route path='/home' element={<Homepage/>}/>
-      <Route path='/about' element={<About/>}/>
-      <Route path='/products' element={<ProductBody/>}/>
-      <Route path='/shop' element={<ProductBody/>}/>
-      <Route path='/products/:id' element={<ProductDetail/>}/>
       <Route
-        path='/cart'
-        element={
-          <CartPage
-            cart={cart}
-            cartCount={cartCount}
-            updateQuantity={updateQuantity}
-            removeFromCart={removeFromCart}
-            clearCart={clearCart}
-          />
-        }
-      />
-      <Route path='/contact' element={<ContactPage/>}/>
-    </Route>
+        path="/"
+        element={<MainLayout cartCount={cartCount} addToCart={addToCart} />}
+      >
+        <Route index element={<Homepage />} />
+        <Route path="/home" element={<Homepage />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/products" element={<ProductBody />} />
+        <Route path="/shop" element={<ProductBody />} />
+        <Route path="/products/:id" element={<ProductDetail />} />
+        <Route
+          path="/cart"
+          element={
+            <CartPage
+              cart={cart}
+              cartCount={cartCount}
+              updateQuantity={updateQuantity}
+              removeFromCart={removeFromCart}
+              clearCart={clearCart}
+            />
+          }
+        />
+        <Route path="/contact" element={<ContactPage />} />
+      </Route>
 
-    {/* login */}
-    <Route path='/login' element={<LoginPage/>} />
-
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/register" element={<Registerpage />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/admin/products" element={<Product />} />
+      <Route path="/admin/orders" element={<Orders />} />
+      <Route path="/orders" element={<Orders />} />
     </Routes>
-
   );
 }
 
 export default App;
 
-function MainLayout({ cartCount, addToCart }){
-  return(
+function MainLayout({ cartCount, addToCart }) {
+  return (
     <>
-    <Navbar cartCount={cartCount}/>
-    <Outlet context={{ addToCart }}/>
-    <Footer/>
+      <Navbar cartCount={cartCount} />
+      <Outlet context={{ addToCart }} />
+      <Footer />
     </>
-  )
+  );
 }
