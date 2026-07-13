@@ -24,7 +24,7 @@ function App() {
       <Route path="/" element={<MainLayout />}>
         <Route path="/" element={<Homepage />} />
         <Route path="/about" element={<About />} />
-        <Route path="/produst" element={<ProductBody />} />
+        <Route path="/produsts" element={<ProductBody />} />
         <Route path="/contact" element={<ContactPage />} />
       </Route>
 
@@ -32,7 +32,7 @@ function App() {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<Registerpage />} />
       <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/products" element={<Product />} />
+      <Route path="/product" element={<Product />} />
       <Route path="/orders" element={<Orders />} />
     </Routes>
   );
