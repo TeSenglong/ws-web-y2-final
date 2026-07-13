@@ -1,12 +1,19 @@
 import { useEffect, useState } from "react";
 import { products } from "../api";
+import { Link } from "react-router-dom";
 // import Cards from "../components/card";
 
 
 export default function Homepage() {
   const menProducts = products.filter(product => product.category === "Man");
   console.log("Men category", menProducts);
-
+  function scrollToTop() {
+    // This scrolls the window to the very top (X: 0, Y: 0) smoothly
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
   return (
     <div className="bg-gray-50 min-h-screen">
 
@@ -32,9 +39,12 @@ export default function Homepage() {
           </p>
 
           <div className="flex gap-4 mt-8">
-            <button className="bg-black text-white px-8 py-3 rounded-lg hover:bg-gray-800">
-              Shop Now
-            </button>
+            <Link to={`/produst`} onClick={scrollToTop}>
+
+              <button className="bg-black text-white px-8 py-3 rounded-lg hover:bg-gray-800">
+                Shop Now
+              </button>
+            </Link>
 
             <button className="border border-black px-8 py-3 rounded-lg hover:bg-black hover:text-white">
               Explore
@@ -62,10 +72,12 @@ export default function Homepage() {
         <div className="grid md:grid-cols-3 gap-8 mt-12">
 
           <div className="bg-white rounded-2xl overflow-hidden shadow-lg">
-            <img
-              src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=700"
-              className="h-72 w-full object-cover"
-            />
+            <Link to={`/produst`} onClick={scrollToTop}>
+              <img
+                src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=700"
+                className="h-72 w-full object-cover"
+              />
+            </Link>
 
             <div className="p-6">
               <h3 className="font-bold text-2xl">
@@ -78,11 +90,14 @@ export default function Homepage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl overflow-hidden shadow-lg">
-            <img
-              src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=700"
-              className="h-72 w-full object-cover"
-            />
+          <div className=" bg-white rounded-2xl overflow-hidden shadow-lg">
+            <Link to={`/produst`} onClick={scrollToTop}>
+
+              <img
+                src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=700"
+                className="h-72 w-full object-cover"
+              />
+            </Link>
 
             <div className="p-6">
               <h3 className="font-bold text-2xl">
@@ -96,10 +111,13 @@ export default function Homepage() {
           </div>
 
           <div className="bg-white rounded-2xl overflow-hidden shadow-lg">
-            <img
-              src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=700"
-              className="h-72 w-full object-cover"
-            />
+            <Link to={`/produst`} onClick={scrollToTop}>
+
+              <img
+                src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=700"
+                className="h-72 w-full object-cover"
+              />
+            </Link>
 
             <div className="p-6">
               <h3 className="font-bold text-2xl">
