@@ -76,6 +76,9 @@ function App() {
         <Route index element={<Homepage />} />
         <Route path="/home" element={<Homepage />} />
         <Route path="/about" element={<About />} />
+<<<<<<< HEAD
+        <Route path="/produsts" element={<ProductBody />} />
+=======
         <Route path="/products" element={<ProductBody />} />
         <Route path="/shop" element={<ProductBody />} />
         <Route path="/products/:id" element={<ProductDetail />} />
@@ -91,14 +94,19 @@ function App() {
             />
           }
         />
+>>>>>>> 78b0e726dc4a66b8270a67ad81f99e9fd5afcb4d
         <Route path="/contact" element={<ContactPage />} />
       </Route>
 
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<Registerpage />} />
       <Route path="/dashboard" element={<Dashboard />} />
+<<<<<<< HEAD
+      <Route path="/product" element={<Product />} />
+=======
       <Route path="/admin/products" element={<Product />} />
       <Route path="/admin/orders" element={<Orders />} />
+>>>>>>> 78b0e726dc4a66b8270a67ad81f99e9fd5afcb4d
       <Route path="/orders" element={<Orders />} />
     </Routes>
   );
