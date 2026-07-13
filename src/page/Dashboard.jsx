@@ -107,14 +107,14 @@ function Dashboard() {
 
           <li
             className="cursor-pointer hover:text-pink-400 transition"
-            onClick={() => navigate("/products")}
+            onClick={() => navigate("/admin/products")}
           >
             👕 Products
           </li>
 
           <li
             className="cursor-pointer hover:text-pink-400 transition"
-            onClick={() => navigate("/orders")}
+            onClick={() => navigate("/admin/orders")}
           >
             🛒 Orders
           </li>

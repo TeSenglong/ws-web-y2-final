@@ -120,7 +120,7 @@ function ProductList() {
 
           <li
             className="cursor-pointer hover:text-pink-400"
-            onClick={() => navigate("/orders")}
+            onClick={() => navigate("/admin/orders")}
           >
             🛒 Orders
           </li>

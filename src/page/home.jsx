@@ -39,11 +39,12 @@ export default function Homepage() {
           </p>
 
           <div className="flex gap-4 mt-8">
-            <Link to={`/produst`} onClick={scrollToTop}>
-
-              <button className="bg-black text-white px-8 py-3 rounded-lg hover:bg-gray-800">
-                Shop Now
-              </button>
+            <Link
+              to="/products"
+              onClick={scrollToTop}
+              className="bg-black text-white px-8 py-3 rounded-lg hover:bg-gray-800"
+            >
+              Shop Now
             </Link>
 
             <button className="border border-black px-8 py-3 rounded-lg hover:bg-black hover:text-white">
@@ -72,7 +73,7 @@ export default function Homepage() {
         <div className="grid md:grid-cols-3 gap-8 mt-12">
 
           <div className="bg-white rounded-2xl overflow-hidden shadow-lg">
-            <Link to={`/produst`} onClick={scrollToTop}>
+            <Link to="/products" onClick={scrollToTop}>
               <img
                 src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=700"
                 className="h-72 w-full object-cover"
@@ -91,7 +92,7 @@ export default function Homepage() {
           </div>
 
           <div className=" bg-white rounded-2xl overflow-hidden shadow-lg">
-            <Link to={`/produst`} onClick={scrollToTop}>
+            <Link to="/products" onClick={scrollToTop}>
 
               <img
                 src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=700"
@@ -111,7 +112,7 @@ export default function Homepage() {
           </div>
 
           <div className="bg-white rounded-2xl overflow-hidden shadow-lg">
-            <Link to={`/produst`} onClick={scrollToTop}>
+            <Link to="/products" onClick={scrollToTop}>
 
               <img
                 src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=700"
