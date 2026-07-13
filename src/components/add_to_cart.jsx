@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function CartPage({ cart, updateQuantity, removeFromCart, clearCart }) {
+export function CartPages({ cart, updateQuantity, removeFromCart, clearCart }) {
   const subtotal = cart.reduce(
     (total, item) => total + item.price * item.quantity,
     0
@@ -130,4 +130,4 @@ function CartPage({ cart, updateQuantity, removeFromCart, clearCart }) {
   );
 }
 
-export default CartPage;
+

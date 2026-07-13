@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { products } from "../api";
-import { Link } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 // import Cards from "../components/card";
 
 
 export default function Homepage() {
-  const menProducts = products.filter(product => product.category === "Man");
-  console.log("Men category", menProducts);
+  const { addToCart } = useOutletContext();
+
   function scrollToTop() {
     // This scrolls the window to the very top (X: 0, Y: 0) smoothly
     window.scrollTo({
@@ -47,7 +47,7 @@ export default function Homepage() {
               Shop Now
             </Link>
 
-            <button className="border border-black px-8 py-3 rounded-lg hover:bg-black hover:text-white">
+            <button className="border border-black  px-8 py-3 rounded-lg hover:bg-white hover:border-red-500 hover:text-red-500">
               Explore
             </button>
           </div>
@@ -167,7 +167,8 @@ export default function Homepage() {
                     {p.price}
                   </p>
 
-                  <button className="mt-5 w-full bg-black text-white py-3 rounded-lg hover:bg-red-500">
+                  <button onClick={() => addToCart(p)}
+                     className="mt-5 w-full cursor-pointer bg-black text-white py-3 rounded-lg hover:bg-red-500">
                     Add To Cart
                   </button>
 

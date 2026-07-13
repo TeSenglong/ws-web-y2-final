@@ -30,10 +30,10 @@ function Orders() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-100 to-pink-50 flex">
+    <div className="min-h-screen bg-linear-to-br from-gray-100 to-pink-50 flex">
       {/* Sidebar */}
 
-      <div className="w-72 bg-gradient-to-b from-gray-900 to-purple-950 text-white p-6">
+      <div className="w-72 bg-linear-to-b from-gray-900 to-purple-950 text-white p-6">
         <h1 className="text-3xl font-bold text-pink-400 mb-10">
           👗 Fashion Admin
         </h1>

@@ -33,10 +33,10 @@ function ProductList() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-100 to-pink-50 flex">
+    <div className="min-h-screen bg-linear-to-br from-gray-100 to-pink-50 flex">
       {/* Sidebar */}
 
-      <div className="w-72 bg-gradient-to-b from-gray-900 to-purple-950 text-white p-6">
+      <div className="w-72 bg-linear-to-b from-gray-900 to-purple-950 text-white p-6">
         <h1 className="text-3xl font-bold text-pink-400 mb-10">
           👗 Fashion Admin
         </h1>
@@ -66,7 +66,7 @@ function ProductList() {
         <div className="flex justify-between mb-8">
           <h1 className="text-4xl font-bold">Products</h1>
 
-          <button className="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-6 py-3 rounded-xl">
+          <button className="bg-linear-to-r from-pink-500 to-purple-600 text-white px-6 py-3 rounded-xl">
             + Add Product
           </button>
         </div>

@@ -12,7 +12,7 @@ export default function Navbar({ cartCount = 0 }) {
           <div className="hidden md:flex gap-8 font-medium">
             <Link to="/" className="hover:text-red-500">Home</Link>
             <Link to="/products" className="hover:text-red-500">Shop</Link>
-            <a href="#" className="hover:text-red-500">Collection</a>
+
             <Link to="/about" className="hover:text-red-500">About</Link>
             <Link to="/contact" className="hover:text-red-500">Contact</Link>
           </div>
@@ -20,7 +20,7 @@ export default function Navbar({ cartCount = 0 }) {
           <div className="flex items-center gap-3">
             <Link
               to="/cart"
-              className="relative grid h-10 w-10 place-items-center rounded-lg border border-gray-200 text-black hover:bg-gray-50"
+              className="relative grid h-10 w-10 place-items-center rounded-lg border border-gray-200 text-black hover:bg-gray-50 hover:text-red-500"
               aria-label="Open basket"
             >
               <svg

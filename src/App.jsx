@@ -16,59 +16,62 @@ import Product from "./page/Product";
 import Orders from "./page/Orders";
 import ProductBody from "./page/products";
 import ProductDetail from "./page/productdetail";
-import CartPage from "./components/add_to_cart";
+// import Cartpage from "./page/cart";
+import { CartPages } from "./components/add_to_cart";
 
 function App() {
-  const { pathname } = useLocation();
-  const [cart, setCart] = useState([]);
 
-  useEffect(() => {
+const { pathname } = useLocation();
+const [cart, setCart] = useState([]);
+
+useEffect(() => {
     window.scrollTo({ top: 0, left: 0 });
-  }, [pathname]);
+}, [pathname]);
 
-  const addToCart = (product) => {
+const addToCart = (product) => {
     setCart((currentCart) => {
-      const existingItem = currentCart.find((item) => item.id === product.id);
+        const existingItem = currentCart.find((item) => item.id === product.id);
 
-      if (existingItem) {
-        return currentCart.map((item) =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        );
-      }
+        if (existingItem) {
+            return currentCart.map((item) =>
+                item.id === product.id
+                    ? { ...item, quantity: item.quantity + 1 }
+                    : item
+            );
+        }
 
-      return [...currentCart, { ...product, quantity: 1 }];
+        return [...currentCart, { ...product, quantity: 1 }];
     });
-  };
+};
 
-  const updateQuantity = (productId, quantity) => {
+const updateQuantity = (productId, quantity) => {
     if (quantity < 1) {
-      removeFromCart(productId);
-      return;
+        removeFromCart(productId);
+        return;
     }
 
     setCart((currentCart) =>
-      currentCart.map((item) =>
-        item.id === productId ? { ...item, quantity } : item
-      )
+        currentCart.map((item) =>
+            item.id === productId ? { ...item, quantity } : item
+        )
     );
-  };
+};
 
-  const removeFromCart = (productId) => {
+const removeFromCart = (productId) => {
     setCart((currentCart) =>
-      currentCart.filter((item) => item.id !== productId)
+        currentCart.filter((item) => item.id !== productId)
     );
-  };
+};
 
-  const clearCart = () => {
+const clearCart = () => {
     setCart([]);
-  };
+};
 
-  const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
 
   return (
     <Routes>
+    
       <Route
         path="/"
         element={<MainLayout cartCount={cartCount} addToCart={addToCart} />}
@@ -79,18 +82,13 @@ function App() {
         <Route path="/products" element={<ProductBody />} />
         <Route path="/shop" element={<ProductBody />} />
         <Route path="/products/:id" element={<ProductDetail />} />
-        <Route
-          path="/cart"
-          element={
-            <CartPage
-              cart={cart}
-              cartCount={cartCount}
-              updateQuantity={updateQuantity}
-              removeFromCart={removeFromCart}
-              clearCart={clearCart}
-            />
-          }
-        />
+
+        <Route path="/cart" element={<CartPages cart={cart}
+          cartCount={cartCount}
+          updateQuantity={updateQuantity}
+          removeFromCart={removeFromCart}
+          clearCart={clearCart} />} />
+
         <Route path="/contact" element={<ContactPage />} />
       </Route>
 

@@ -57,10 +57,10 @@ function Dashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-100 via-pink-50 to-purple-100 flex">
+    <div className="min-h-screen bg-linear-to-br from-gray-100 via-pink-50 to-purple-100 flex">
       {/* SIDEBAR */}
 
-      <div className="w-72 bg-gradient-to-b from-gray-900 to-purple-950 text-white p-6 shadow-2xl">
+      <div className="w-72 bg-linear-to-b from-gray-900 to-purple-950 text-white p-6 shadow-2xl">
         <h1 className="text-3xl font-extrabold text-pink-400 mb-10">
            Fashion Admin
         </h1>
@@ -169,7 +169,7 @@ function Dashboard() {
 
             <button
               onClick={addProduct}
-              className="bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-xl hover:scale-105 transition"
+              className="bg-linear-to-r from-pink-500 to-purple-600 text-white rounded-xl hover:scale-105 transition"
             >
               Add Product
             </button>
